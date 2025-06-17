@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nimbus/services/weather_service.dart';
-import 'package:nimbus/theme/app_colors.dart'; // <<<<<
+import 'package:nimbus/theme/app_colors.dart';
 
 class ForecastScreen extends StatefulWidget {
   final String city;
@@ -103,41 +103,45 @@ class _ForecastScreenState extends State<ForecastScreen> {
             child: isLoading
                 ? const Center(child: CircularProgressIndicator(color: AppColors.white))
                 : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 0.0), // No left padding
               child: SingleChildScrollView(
                 padding: const EdgeInsets.only(bottom: 100),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(30),
-                            onTap: () => Navigator.pop(context),
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 0.0),// Adjusted padding for better alignment.
-                              child: Icon(Icons.arrow_back, color: AppColors.white),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              widget.city,
-                              style: GoogleFonts.poppins(
-                                fontSize: 24,
-                                color: AppColors.white,
-                                fontWeight: FontWeight.w400,
+                    // Back arrow FLUSH left
+                    Padding(
+                      padding: const EdgeInsets.only(right: 24.0), // Only right, so left is flush
+                      child: Row(
+                        children: [
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () => Navigator.pop(context),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(Icons.arrow_back, color: AppColors.white),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: 24),
-                      ],
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                widget.city,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 24,
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Center(
@@ -154,8 +158,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                         style: GoogleFonts.openSans(
                           fontSize: 24,
                           color: AppColors.white,
-                          fontWeight: FontWeight.w700
-                          ,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
@@ -235,7 +238,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('AIR QUALITY',
-                                    style: GoogleFonts.openSans(fontSize: 16, color: AppColors.white70,fontWeight: FontWeight.w400)),
+                                    style: GoogleFonts.openSans(fontSize: 16, color: AppColors.white70, fontWeight: FontWeight.w400)),
                                 Text(
                                   "2 - Fair",
                                   style: GoogleFonts.openSans(
@@ -260,7 +263,6 @@ class _ForecastScreenState extends State<ForecastScreen> {
                             value: '5:32 AM',
                             subtitle: 'Sunset: 6:58 PM',
                             icon: Icons.wb_twighlight,
-                            // Use sunrise icon
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -269,7 +271,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                             title: 'UV INDEX',
                             value: '4',
                             subtitle: 'Moderate',
-                            icon: Icons.wb_sunny_outlined, // Use UV/sun icon
+                            icon: Icons.wb_sunny_outlined,
                           ),
                         ),
                       ],
@@ -353,27 +355,21 @@ class _ForecastScreenState extends State<ForecastScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Icon next to the title!
           Icon(icon, color: AppColors.white70, size: 24),
           const SizedBox(width: 8),
-          // Everything else in a column
+          // Title and value in a column
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Row for Icon + Title
-                Row(
-                  children: [
-                    // Title next to the icon
-                    Text(
-                      title,
-                      style: GoogleFonts.openSans(
-                        color: AppColors.white70,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                // Title next to the icon (already in a Row)
+                Text(
+                  title,
+                  style: GoogleFonts.openSans(
+                    color: AppColors.white70,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -399,5 +395,4 @@ class _ForecastScreenState extends State<ForecastScreen> {
       ),
     );
   }
-
 }
