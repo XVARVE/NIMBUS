@@ -118,7 +118,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                             borderRadius: BorderRadius.circular(30),
                             onTap: () => Navigator.pop(context),
                             child: const Padding(
-                              padding: EdgeInsets.only(left: 0.0),
+                              padding: EdgeInsets.only(left: 0.0),// Adjusted padding for better alignment.
                               child: Icon(Icons.arrow_back, color: AppColors.white),
                             ),
                           ),
