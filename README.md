@@ -1,14 +1,14 @@
-🌤️ Nimbus — Flutter Weather App
+# 🌤️ Nimbus — Flutter Weather App
 
 
 
 
-📱 Overview
+## 📱 Overview
 
 Nimbus is a beautifully designed Flutter-based weather application that delivers real-time weather forecasts, UV index, air quality, and sunrise/sunset insights with smooth gradients, dynamic data, and animated visuals.
 Built using the OpenWeatherMap API, it’s crafted for performance, responsiveness, and design consistency across all devices.
 
-✨ Features
+## ✨ Features
 
 ✅ Live Weather Data — Get real-time temperature, humidity, and weather conditions.
 🌦️ 7-Day Forecast — Horizontal scroll view showing weekly predictions.
